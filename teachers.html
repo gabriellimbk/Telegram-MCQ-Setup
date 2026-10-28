@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A ready-to-show four-step Telegram MCQ onboarding display for class teachers.">
+  <title>Connect your class · Telegram MCQ</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="teachers.css">
+  <script src="teachers.js" defer></script>
+</head>
+<body class="teacher-page">
+  <header class="teacher-toolbar"><a href="index.html#onboarding">← Coordinator’s guide</a><div><button id="copy-teacher-message" class="text-button">Copy teacher instructions</button><button id="print-teacher-display" class="button button-small">Print handout ↗</button></div></header>
+  <main class="teacher-display">
+    <p class="eyebrow">TELEGRAM MCQ · FOR CLASS TEACHERS</p>
+    <h1>Connect your class.</h1>
+    <p class="teacher-lead">Use Telegram on your phone and your class link from the coordinator.</p>
+    <ol class="teacher-steps">
+      <li><span class="teacher-step-number" aria-hidden="true">01</span><div><h2>Create a class group</h2><p>Or use an existing group where you can add the bot.</p></div></li>
+      <li><span class="teacher-step-number" aria-hidden="true">02</span><div><h2>Tap your class link</h2><p>Open the complete link on your phone.</p></div></li>
+      <li><span class="teacher-step-number" aria-hidden="true">03</span><div><h2>Select the group &amp; add the bot</h2><p>Allow it to send messages, polls and images.</p></div></li>
+      <li><span class="teacher-step-number" aria-hidden="true">04</span><div><h2>Check “Connected successfully”</h2><p>Look in the group, then tell your coordinator you’re ready.</p></div></li>
+    </ol>
+    <details class="teacher-help"><summary>Link not working?</summary><p>Send the full link to Telegram Saved Messages and tap it on your phone. Still stuck? Contact your coordinator.</p></details>
+    <footer><p id="copy-status" role="status" aria-live="polite"></p></footer>
+  </main>
+</body>
+</html>

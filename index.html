@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A step-by-step guide for coordinating teachers: set up your own Telegram MCQ bot, add questions and images, onboard classes, and schedule practice. No coding experience needed.">
+  <meta name="theme-color" content="#193e35">
+  <title>Telegram MCQ · The coordinator’s guide</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="guide.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to guide</a>
+<header class="topbar">
+  <a class="brand" href="#overview" aria-label="Telegram MCQ guide home"><span class="brand-icon" aria-hidden="true">↗</span><span>Telegram MCQ<span class="brand-sub">THE COORDINATOR’S GUIDE</span></span></a>
+  <div class="top-actions"><button class="text-button" id="print-guide">Print guide <span aria-hidden="true">↗</span></button><a class="button button-small" data-template-copy target="_blank" rel="noopener" href="https://docs.google.com/spreadsheets/d/1cRlpZaSJnoakQxmchgc4X3xbleVbjW1Czp6vHQKYr7c/copy">Get your template <span aria-hidden="true">↗</span></a><button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="guide-sidebar">Guide menu</button></div>
+</header>
+<div class="layout">
+<aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+  <label class="search-label" for="guide-search">Find a topic</label>
+  <div class="search-box"><span aria-hidden="true">⌕</span><input id="guide-search" type="search" placeholder="Try “images” or “timing”" autocomplete="off"><kbd>/</kbd></div>
+  <p class="nav-label">FIRST-TIME SETUP</p>
+  <nav id="section-nav">
+    <a href="#overview"><span>00</span> What this app does</a>
+    <a href="#start"><span>01</span> Your setup checklist</a>
+    <a href="#duplicate"><span>02</span> Make your own copy</a>
+    <a href="#bot"><span>03</span> Create your Telegram bot</a>
+    <a href="#connect"><span>04</span> Connect Google & Telegram</a>
+    <a href="#onboarding"><span>05</span> Onboard your classes</a>
+    <a href="#first-quiz"><span>06</span> Send your first quiz</a>
+    <p class="nav-label">RUNNING YOUR QUIZZES</p>
+    <a href="#questions"><span>07</span> Add & edit questions</a>
+    <a href="#images"><span>08</span> Add diagrams & images</a>
+    <a href="#chapters"><span>09</span> Choose chapters & repeats</a>
+    <a href="#schedule"><span>10</span> Set days, times & frequency</a>
+    <a href="#results"><span>11</span> Responses & streaks</a>
+    <a href="#maintenance"><span>12</span> Pause, hand over & restart</a>
+    <a href="#troubleshooting"><span>13</span> Troubleshooting</a>
+    <a href="#reference"><span>14</span> Quick reference</a>
+  </nav>
+  <div class="sidebar-note"><span class="status-dot"></span> For the Class Registry version<p>No coding to write. A few named functions to select and run.</p></div>
+</aside>
+<main id="main">
+  <div id="search-state" class="search-state" hidden role="status"></div>
+  <article id="overview" data-title="What the app does features overview" class="hero guide-section">
+    <p class="eyebrow"><span class="tiny-line"></span> CLASSROOM PRACTICE, MADE REGULAR</p>
+    <h1>A little practice.<br>Delivered to <em>every class.</em></h1>
+    <p class="hero-intro">Your practical guide to running a Telegram MCQ bot—from a blank copy of the template to questions arriving in your class groups.</p>
+    <div class="hero-actions"><a class="button" href="#start">Start your setup <span aria-hidden="true">↓</span></a><a class="quiet-link" href="#schedule">Just need the scheduling steps? ↗</a></div>
+    <div class="hero-caption"><span>FOR COORDINATING TEACHERS</span><span>NO CODING EXPERIENCE NEEDED</span></div>
+    <section class="student-features" aria-labelledby="student-features-title">
+      <h2 class="small-heading" id="student-features-title">The student experience</h2>
+      <p class="plain-note">Short quizzes, right inside the class Telegram group. No separate quiz app to open.</p>
+      <div class="feature-grid">
+        <div><span class="flow-icon" aria-hidden="true">01</span><h3>Practise in your class group</h3><p>Receive regular MCQ quizzes in Telegram. Choose from four options and tap to submit your answer.</p></div>
+        <div><span class="flow-icon" aria-hidden="true">02</span><h3>Learn from your answer</h3><p>See whether you are correct. Tap the quiz’s explanation/lightbulb to read the answer feedback.</p></div>
+        <div><span class="flow-icon" aria-hidden="true">03</span><h3>Work with diagrams and photos</h3><p>Questions can include an image alongside the text, so you can practise interpreting visual information too.</p></div>
+        <div><span class="flow-icon" aria-hidden="true">04</span><h3>Check your streaks</h3><p>In identified quizzes, answer first, wait a moment, then tap <strong>Claim streak</strong> to see your consecutive-correct and daily participation streaks.</p></div>
+      </div>
+      <p class="microcopy">Streak tracking is available only for identified polls. Daily participation counts consecutive calendar days with an answer; simply opening Telegram does not count.</p>
+    </section>
+  </article>
+
+  <article id="start" data-title="Setup checklist requirements accounts permissions" class="guide-section">
+    <header class="setup-guide-banner">
+      <p class="eyebrow">THE SETUP GUIDE STARTS HERE</p>
+      <h2>Build your Telegram MCQ bot.</h2>
+      <p>For coordinating teachers: follow the steps below to set up your own bot, connect your classes and schedule your quizzes. No coding experience needed.</p>
+    </header>
+    <div class="section-heading"><span class="section-number">01</span><div><p class="eyebrow">YOUR FIRST SESSION</p><h2>Start with one test group.</h2></div></div>
+    <p>You’ll need a Google account that can use Sheets, Drive and Apps Script, Telegram on your phone, and permission to use these services for your school. Use a computer for setup and your phone for the Telegram group steps.</p>
+    <div class="callout"><strong>You do not need to write or paste code.</strong><p>The template already contains it. When this guide names a function, it means choosing that name from a dropdown and clicking Run.</p></div>
+    <div class="checklist-heading"><h3>Your setup checklist</h3><span id="checklist-count" aria-live="polite">0 of 7 complete</span></div>
+    <div class="progress-track"><div id="checklist-progress"></div></div>
+    <div class="setup-checklist">
+      <label><input type="checkbox" data-check="copy"><span>Make your own copy of the template <a href="#duplicate">Step 02 ↗</a></span></label>
+      <label><input type="checkbox" data-check="bot"><span>Create your bot and enter its token <a href="#bot">Step 03 ↗</a></span></label>
+      <label><input type="checkbox" data-check="connect"><span>Deploy your copy and register its webhook <a href="#connect">Step 04 ↗</a></span></label>
+      <label><input type="checkbox" data-check="class"><span>Connect one temporary test group <a href="#onboarding">Step 05 ↗</a></span></label>
+      <label><input type="checkbox" data-check="test"><span>Send a sample quiz and check an answer <a href="#first-quiz">Step 06 ↗</a></span></label>
+      <label><input type="checkbox" data-check="questions"><span>Replace the samples with your subject content <a href="#questions">Step 07 ↗</a></span></label>
+      <label><input type="checkbox" data-check="schedule"><span>Set a schedule and onboard the remaining classes <a href="#schedule">Step 10 ↗</a></span></label>
+    </div>
+    <p class="microcopy">Ticks are saved only in this browser. They are a personal checklist, not a connection to your workbook. <button class="inline-button" id="reset-checklist">Reset checklist</button></p>
+  </article>
+
+  <article id="duplicate" data-title="Duplicate copy template Excel Google Sheets settings replace own workbook" class="guide-section">
+    <div class="section-heading"><span class="section-number">02</span><div><p class="eyebrow">ONE-TIME SETUP</p><h2>First, make your own copy.</h2></div></div>
+    <p>The workbook is a <strong>Google Sheet</strong>, even if you normally call it an Excel file. Keep it in Google Sheets: downloading an Excel file does not run the bot or its Apps Script.</p>
+    <a class="button" data-template-copy href="https://docs.google.com/spreadsheets/d/1cRlpZaSJnoakQxmchgc4X3xbleVbjW1Czp6vHQKYr7c/copy" target="_blank" rel="noopener">Duplicate the MCQ template <span aria-hidden="true">↗</span></a>
+    <ol class="steps"><li>Sign in to the Google account that will manage the quizzes.</li><li>Open the duplication link and choose <strong>Make a copy</strong>. If you see the spreadsheet instead, use <strong>File → Make a copy</strong>.</li><li>Rename it for your subject and year, for example <strong>2027 Geography MCQ</strong>. Work only in this copy.</li><li>Keep editing access limited to trusted coordinators. Class teachers need their onboarding links, not access to your bot token.</li></ol>
+    <p class="plain-note">The copy includes the script files. Your bot, authorisation, deployment and automatic trigger must be set up for <strong>your copy</strong>. A template copy is not connected to a working bot by default.</p>
+    <div class="callout"><strong>Stop here once your copy is saved and renamed.</strong><p>You do not have a bot token or web-app address yet. Leave Dashboard E1, E2 and E3 blank for now. Keep the sample questions for your first test.</p></div>
+    <div class="table-wrap"><table><caption>A preview of what comes next—not fields to fill now</caption><thead><tr><th>When you reach…</th><th>You will create, then enter…</th></tr></thead><tbody><tr><td><a href="#bot">Step 03 · Create your bot</a></td><td>Your bot token → Dashboard E1</td></tr><tr><td><a href="#connect">Step 04B · Deploy your copy</a></td><td>Your web-app address → Dashboard E3</td></tr><tr><td><a href="#questions">Step 07 · Prepare your content</a></td><td>Your own questions and chapter names, after the sample test</td></tr><tr><td><a href="#images">Step 08 · Images (optional)</a></td><td>Your image-folder ID → Dashboard E2. Leave blank for text-only quizzes.</td></tr></tbody></table></div>
+    <p class="plain-note">Keep the tab names, column positions, script files, calculated columns G/K/L and log headers as supplied. You will not need to edit the code.</p>
+    <p>The template has four sample questions and matching chapters. Bot settings, class connections, response logs and the image index start blank. Scheduled weekdays start unchecked.</p>
+  </article>
+
+  <article id="bot" data-title="BotFather newbot token name username Telegram create bot E1" class="guide-section">
+    <div class="section-heading"><span class="section-number">03</span><div><p class="eyebrow">ONE-TIME SETUP · TELEGRAM</p><h2>Create your subject’s bot.</h2></div></div>
+    <p><strong>BotFather is Telegram’s own bot-creation assistant.</strong> You chat with it inside Telegram to create your subject’s quiz bot. It is not a person you need to contact, and it is not your quiz bot.</p>
+    <a class="button" href="https://t.me/BotFather" target="_blank" rel="noopener">Open the official BotFather <span aria-hidden="true">↗</span></a>
+    <ol class="steps"><li><strong>Open Telegram on your phone.</strong> Use the button above on that phone and choose to open Telegram if asked. Alternatively, tap Telegram’s Search/magnifying-glass control (or the search bar on a computer) and type <code>BotFather</code>.</li><li><strong>Check the account before continuing.</strong> Select the official verified account with the exact username <code>@BotFather</code>, not another account with a similar display name. If in doubt, use the direct link above.</li><li><strong>Start the conversation.</strong> Tap <strong>Start</strong> at the bottom if shown. In the message box, type <code>/newbot</code> including the slash, then tap Send.</li><li><strong>Give your bot a display name.</strong> When BotFather asks for a name, type the name students should see, such as <strong>Geography Practice</strong>, and send it.</li><li><strong>Choose your bot’s username.</strong> When asked, send a unique username ending in <code>bot</code>, such as <code>ExampleGeographyPractice_bot</code>. This is only an example. If it is taken, choose another and try again.</li><li><strong>Find the token in BotFather’s reply.</strong> After successful creation, it sends a long secret value for access to the HTTP API. Copy the entire token—not the bot’s name, username or t.me link. Keep this conversation so you can find your bot later.</li><li><strong>Now fill the first setting.</strong> Return to your copied Google Sheet, open the <strong>Dashboard</strong> tab and paste the token into cell <strong>E1</strong>. E2 and E3 stay blank at this stage.</li></ol>
+    <div class="callout"><strong>Ready for Step 04?</strong><p>You now have your own workbook and a bot token in Dashboard E1. Leave your questions unchanged until the first test.</p></div>
+    <div class="callout warning"><strong>Treat the token like a password.</strong><p>Do not post it in a class group, paste it into this guide, or share it with students. If it is exposed, regenerate it through BotFather and update E1.</p></div>
+    <p>Use one bot for this workbook. Reusing its token in another independently deployed workbook can redirect incoming answers to that other deployment.</p>
+    <p class="source-note">Official reference: <a href="https://core.telegram.org/bots/features#botfather" target="_blank" rel="noopener">Telegram’s BotFather instructions</a>.</p>
+  </article>
+
+  <article id="connect" data-title="Deploy webhook Apps Script authorise authorize connect E3 URL Anyone permissions" class="guide-section">
+    <div class="section-heading"><span class="section-number">04</span><div><p class="eyebrow">ONE-TIME SETUP · GOOGLE SHEETS</p><h2>Connect the two services.</h2></div></div>
+    <p>Complete A, then B, then C. You need your own workbook with the bot token already in <strong>Dashboard E1</strong>. A <strong>webhook</strong> lets Telegram send group-connection messages, answers and button taps to your script.</p>
+    <div class="setup-stage"><div><h3>A. Authorise your copy</h3>
+    <ol class="steps"><li>In your copied workbook, choose <strong>Extensions → Apps Script</strong>.</li><li>Select <strong>onboarding.gs</strong> in the Files list.</li><li>In the function dropdown above the code, choose <strong>setupClassOnboarding</strong>, then click <strong>Run</strong>. You can do this before entering any classes.</li><li>If Google requests authorisation, select the account managing this workbook, review the requested access, and authorise it only if you trust your template copy. These permissions let the script work with the sheet, images and Telegram.</li><li>Wait for <strong>Execution completed</strong>. The bot’s username should appear in <strong>Class Registry!S2</strong>.</li></ol>
+    </div><aside class="purpose-card"><p class="eyebrow">WHY THIS STEP?</p><h4>A · Give permission</h4><p>Allow your copied script to use the Google services it needs and contact Telegram. This setup also identifies your bot and prepares the class registry.</p><strong>Result: authorised copy + bot username in S2.</strong></aside></div>
+    <div class="callout warning"><strong>If your school blocks authorisation or external web apps</strong><p>Ask your Google Workspace administrator to review the setup. Do not bypass a school restriction or use another account without approval.</p></div>
+    <div class="setup-stage"><div><h3>B. Create the web-app address</h3>
+    <ol class="steps"><li>In Apps Script, click <strong>Deploy → New deployment</strong>.</li><li>Choose the deployment type <strong>Web app</strong> (use the type/settings icon if needed).</li><li>Enter a description, such as <strong>Initial quiz bot setup</strong>.</li><li>Set <strong>Execute as → Me</strong>, and <strong>Who has access → Anyone</strong>. Telegram must be able to reach the webhook without signing into Google.</li><li>Click <strong>Deploy</strong> and complete any account authorisation required.</li><li>Copy the <strong>Web app URL</strong> ending in <code>/exec</code>. Paste it into <strong>Dashboard!E3</strong> in your workbook. Do not use a <code>/dev</code> address.</li></ol>
+    </div><aside class="purpose-card"><p class="eyebrow">WHY THIS STEP?</p><h4>B · Create a receiving address</h4><p>Publish an address that Telegram can reach. It supports onboarding, identified answers and streak-button taps—not just streaks. It does not create a sending schedule.</p><strong>Result: your /exec URL in E3.</strong></aside></div>
+    <div class="setup-stage"><div><h3>C. Register the connection</h3>
+    <ol class="steps"><li>Return to <strong>onboarding.gs</strong>.</li><li>Select <strong>setupTelegramWebhookForOnboarding</strong> in the function dropdown, then click <strong>Run</strong>.</li><li>Wait for <strong>Execution completed</strong>. To check the connection, select <strong>webhook.gs → checkTelegramWebhook → Run</strong>. Its log should show your E3 address, no continuing errors, and normally no pending updates.</li></ol>
+    </div><aside class="purpose-card"><p class="eyebrow">WHY THIS STEP?</p><h4>C · Tell Telegram where to send</h4><p>Register the address from B with your bot. Incoming group connections, identified poll answers and claim-button taps can then reach your copy.</p><strong>Result: Telegram is connected to your URL.</strong></aside></div>
+    <p class="plain-note"><strong>Keep the /exec address within your coordinator team.</strong> This template also exposes a Send Poll page at that address; it is not a sign-in-protected administration portal. Run quizzes from your spreadsheet dashboard and do not distribute the deployment URL to students.</p>
+    <p>You do not redeploy after changing questions, classes, image files or weekdays. Redeployment is needed if you later change script code. Use <strong>Deploy → Manage deployments → Edit → New version → Deploy</strong> to keep the same URL.</p>
+    <p class="source-note">Official reference: <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener">Google’s web-app deployment guide</a>.</p>
+  </article>
+
+  <article id="onboarding" data-title="Onboarding class registry unique link group chat ID active setupClassOnboarding onOpen phone Saved Messages" class="guide-section">
+    <div class="section-heading"><span class="section-number">05</span><div><p class="eyebrow">ONCE FOR EACH CLASS</p><h2>One class. One link.</h2></div></div>
+    <p>Teachers create their groups. The class-specific link adds the bot and records the Chat ID automatically. No teacher needs to find or send you a Chat ID.</p>
+    <div class="callout"><strong>First-time setup: connect only a test group now.</strong><p>Use one row with Class Code <code>TEST-CLASS</code> and a temporary group that you control. Keep other classes inactive. After Step 06 succeeds and your own content is ready, repeat these steps for the real classes.</p></div>
+    <h3>The coordinator’s part</h3>
+    <ol class="steps"><li>Open <strong>Class Registry</strong>. Use one row per class.</li><li>Fill <strong>B: Class Code</strong>, for example <code>27GEO-A</code>. Add the year, class name and teacher name in A, C and D if helpful.</li><li>Tick <strong>F: Active</strong>. In E, leave <strong>Anonymous Poll</strong> unticked if you want individual response logging and streaks.</li><li>Open <strong>Extensions → Apps Script → onboarding.gs</strong>.</li><li>Select <strong>setupClassOnboarding</strong> from the function dropdown and click <strong>Run</strong>.</li><li>Return to the registry. A unique link appears in <strong>H: Onboarding Link</strong> for each row with a class code in B. Give each teacher only their class’s link.</li></ol>
+    <div class="function-demo" aria-label="Illustration of correct Apps Script function selection"><p>WHAT TO SELECT · ILLUSTRATION</p><div><span class="demo-file">onboarding.gs</span><span class="demo-select">setupClassOnboarding <span aria-hidden="true">▾</span></span><span class="demo-run">▶ Run</span></div></div>
+    <div class="callout warning"><strong>Opening onboarding.gs does not select the right function.</strong><p>Choose <code>setupClassOnboarding</code> explicitly. Running <code>onOpen</code> only creates the spreadsheet menu; it does not generate links. Blank column B means no link for that row.</p></div>
+    <p>You may rerun setup after adding classes. Existing tokens and links are preserved. The shortcut <strong>Quiz Bot → Set up / refresh onboarding</strong> runs the same function; reload the spreadsheet if the menu is missing.</p>
+    <h3>The class teacher’s part</h3>
+    <div class="teacher-share"><p class="eyebrow">READY TO SHOW YOUR TEACHERS</p><h4>Connect your class in four steps.</h4><p>Open the large-text display during a briefing, share its link, or print it as a handout. Send each teacher their own class-specific onboarding link separately.</p><a class="button" href="teachers.html" target="_blank" rel="noopener">Open class-teacher display <span aria-hidden="true">↗</span></a><p class="microcopy">No Apps Script, bot token or spreadsheet editing is needed for class teachers.</p></div>
+    <ol class="steps"><li>Create a Telegram class group, or use an existing one where you are allowed to add the bot.</li><li>Open the class-specific onboarding link <strong>on a device with Telegram</strong>.</li><li>Choose the intended group and confirm adding the bot. Ensure the bot can send messages, polls and images in that group.</li><li>Look for <strong>Connected successfully</strong> in the group.</li></ol>
+    <details><summary>The link opens a “START BOT” page on my computer</summary><p>Send the complete link to your own Telegram <strong>Saved Messages</strong>. Open Saved Messages on your phone and tap the link there. Telegram should offer a group picker. If it opens only a private bot chat, check that you copied the entire H link, including <code>?startgroup=…</code>, rather than just the bot username.</p></details>
+    <h3>Check the connection</h3>
+    <div class="status-strip"><span>F <strong>Active ✓</strong></span><span>I <strong>Connected</strong></span><span>J <strong>Chat ID filled</strong></span><span>O <strong>Bot Present ✓</strong></span></div>
+    <p>Those are the conditions for quiz delivery, alongside a class code in B. <strong>Class Registry is the only recipient list.</strong> There is no separate Chat IDs tab.</p>
+    <p>A class link is bound to its registered group. It cannot be used to connect a different group. If a group must be replaced, first untick Active and ask the coordinator to review/reset that class’s connection; do not reuse another class’s link.</p>
+    <p>To preview recipients without sending anything: <strong>onboarding.gs → previewClassDeliveryTargets → Run</strong>. Read the execution log.</p>
+  </article>
+
+  <article id="first-quiz" data-title="First test manual SEND poll sample vote claim streak verify" class="guide-section">
+    <div class="section-heading"><span class="section-number">06</span><div><p class="eyebrow">CHECK BEFORE INVITING EVERYONE</p><h2>Run a complete test.</h2></div></div>
+    <p>Connect a temporary group first. Leave other classes inactive until you are ready: <strong>SEND broadcasts to every eligible class</strong>, not just the row you last clicked.</p>
+    <ol class="steps"><li>Keep the sample chapters checked in <strong>Completed Chapters</strong>. Leave <strong>Anonymous Poll</strong> unticked for your test class.</li><li>Open <strong>Dashboard</strong> and click <strong>SEND</strong> once. If the drawing controls are not visible, wait for the sheet to finish loading. The equivalent coordinator function is <strong>Code.gs → sendPollFromDashboard → Run</strong>.</li><li>Wait for the confirmation showing a question ID and number of successful deliveries. Read any failed-delivery message before trying again.</li><li>In the test Telegram group, check that the question, four options and quiz poll arrive.</li><li>Vote, then tap <strong>Claim streak</strong> after a moment. Check that the result popup appears.</li><li>In the workbook, check <strong>Poll Map</strong>, <strong>Poll Responses</strong> and <strong>User Streaks</strong>. An identified test answer should be recorded.</li></ol>
+    <div class="callout"><strong>Manual SEND ignores your weekday schedule.</strong><p>It sends immediately using your current chapter and repeat settings. Clicking it again can send another question.</p></div>
+  </article>
+
+  <article id="questions" data-title="Add edit questions options answer correct index formula columns question IDs feedback bank sample" class="guide-section">
+    <div class="section-heading"><span class="section-number">07</span><div><p class="eyebrow">EVERYDAY USE</p><h2>Build your question bank.</h2></div></div>
+    <p>Use <strong>one row per question</strong> in Questions. Replace or clear the four sample rows before launch. You can paste from another spreadsheet, but paste only into the input columns—not across the calculated columns.</p>
+    <p><strong>Prepare the chapter names first:</strong> open <strong>Completed Chapters</strong> and enter your topics in column A. Then use exactly those names in Questions column J. Keep release dates blank while preparing content; <a href="#chapters">Step 09</a> explains which chapters to enable before launch.</p>
+    <div class="table-wrap"><table><caption>Questions tab: what goes where</caption><thead><tr><th>Column</th><th>What to enter</th><th>Who fills it?</th></tr></thead><tbody>
+      <tr><td><code>A</code> Question</td><td>The question stem</td><td>You · required</td></tr><tr><td><code>B–E</code> Options 1–4</td><td>Four distinct answer options; all four must be filled</td><td>You · required</td></tr><tr><td><code>F</code> Image Name</td><td>Exact uploaded filename, including .png or .jpg</td><td>You · optional</td></tr><tr><td><code>G</code> Image ID</td><td>Looks up the file in File List</td><td>Formula · leave alone</td></tr><tr><td><code>H</code> Feedback</td><td>A short explanation students can view after voting</td><td>You · optional</td></tr><tr><td><code>J</code> Chapter title</td><td>Match a chapter in Completed Chapters</td><td>You · required</td></tr><tr><td><code>K</code> Correct Answer Index</td><td>Calculates 0, 1, 2 or 3 from the answer in N</td><td>Formula · leave alone</td></tr><tr><td><code>L</code> Question ID</td><td>Identifies the row in quiz records</td><td>Formula · leave alone</td></tr><tr><td><code>M</code> Sent</td><td>The bot marks a delivered question “sent”</td><td>Bot · leave blank for new questions</td></tr><tr><td><code>N</code> Correct Answer</td><td>Copy the exact correct option text from B, C, D or E</td><td>You · required</td></tr>
+    </tbody></table></div>
+    <p class="microcopy">Column I is an unused hidden legacy column. Keep the existing layout; do not delete or move columns.</p>
+    <h3>A reliable editing routine</h3>
+    <ol class="steps"><li>Fill A, B–E, J and N. Add F or H only if needed.</li><li>Check that K contains a number from 0 to 3, L has a question ID, and M is blank.</li><li>Make sure J matches the intended chapter title and the chapter is eligible.</li><li>Test new content with a temporary group before a large rollout.</li></ol>
+    <p>Feedback is trimmed to 200 characters by the app. If H is blank, students get a basic correct-answer explanation. Keep question text and options concise, especially when using images.</p>
+    <details><summary>How do I add more rows?</summary><p>The template’s formulas are filled through row <strong>937</strong>. Type into the blank rows within that area. Beyond it, insert rows in the Questions tab and copy formulas from a neighbouring blank row in <strong>G, K and L</strong> into the new rows. Check that references adjust to each new row. Do not copy a used row’s “sent” value into M.</p></details>
+    <details><summary>Can I change a question after it has been used?</summary><p>For a substantial change, add a new question row rather than overwriting a used question. Keep used question IDs stable: do not sort, reorder or delete used rows once you have response history. The ID formulas depend on row position.</p></details>
+    <details><summary>My question contains mathematical symbols</summary><p>Plain text and Unicode symbols such as ×, ÷, ≤ and ≥ are easiest. For equations, diagrams or complex layouts, use a clear image. If Telegram reports “can’t parse entities”, literal &lt; or &amp; characters in the formatted question may need escaping; ask your coordinator for help or use equivalent words/symbols.</p></details>
+  </article>
+
+  <article id="images" data-title="Images photos diagrams Google Drive folder E2 file ID filename Update Images List getFileNamesAndIds" class="guide-section">
+    <div class="section-heading"><span class="section-number">08</span><div><p class="eyebrow">OPTIONAL</p><h2>Add a diagram or photo.</h2></div></div>
+    <p>Images stay in a Google Drive folder that the script’s owner can access. The bot uploads the image to Telegram; students do not need direct access to your Drive folder.</p>
+    <ol class="steps"><li>Create a Drive folder for quiz images under the account managing the bot. Upload clear PNG or JPG images.</li><li>Open that folder. In a URL such as <code>drive.google.com/drive/folders/FOLDER_ID</code>, copy only the part after <code>/folders/</code>, stopping before any <code>?</code>.</li><li>Paste this folder ID into <strong>Dashboard!E2</strong>. Do not paste the full folder URL.</li><li>Click <strong>Update Images List</strong> on Dashboard. Alternatively, select <strong>Code.gs → getFileNamesAndIds → Run</strong>. Authorise Drive access if requested.</li><li>Open <strong>File List</strong>. Check that each filename has a file ID.</li><li>In <strong>Questions!F</strong>, enter the exact filename, including its extension—for example <code>river-cross-section.png</code>. Column G should fill automatically.</li><li>Send a test question and confirm that the image is readable on a phone.</li></ol>
+    <div class="callout"><strong>Refresh the list after adding or renaming files.</strong><p>Use unique filenames. Avoid nested folders: the image-list function reads files directly inside the chosen folder.</p></div>
+    <p>If G stays blank, the image will not be attached. Check the spelling, extension, file location and refreshed File List. Keep the combined question and options short enough for an image caption; long captions can be rejected by Telegram. Use only images you are permitted to share.</p>
+  </article>
+
+  <article id="chapters" data-title="Completed Chapters date unlock eligible random repeat sent clear questions topics" class="guide-section">
+    <div class="section-heading"><span class="section-number">09</span><div><p class="eyebrow">CONTROL WHAT STUDENTS RECEIVE</p><h2>Release the right content.</h2></div></div>
+    <p>In <strong>Completed Chapters</strong>, enter each chapter/topic in column A. Match the same wording in Questions column J. The question-count column calculates how many questions belong to that chapter.</p>
+    <div class="two-column"><div class="panel"><h3>Release by checkbox</h3><p>Leave the unlock date blank and tick Completed when the chapter is ready. With <strong>Release only completed chapters</strong> ticked on Dashboard, only those checked chapters are used.</p></div><div class="panel"><h3>Release by date</h3><p>Enter a real date in column B. Scheduled <strong>fullCode</strong> runs update Completed before sending: today/past dates become checked and future dates become unchecked.</p></div></div>
+    <p class="plain-note">If a date is filled, it takes precedence the next time <code>fullCode</code> updates chapters. Leave B blank for a purely manual checkbox. Before using manual SEND with date-based chapters, run <strong>updateStatusBasedOnDate</strong> in Code.gs, or check the Completed boxes yourself.</p>
+    <div class="table-wrap"><table><caption>Dashboard choices</caption><thead><tr><th>Setting</th><th>Unticked</th><th>Ticked</th></tr></thead><tbody><tr><td>Release only completed chapters</td><td>All named chapters in Completed Chapters are eligible</td><td>Only chapters with Completed checked are eligible</td></tr><tr><td>Allow Repeat Questions</td><td>Only questions not marked “sent”</td><td>Both sent and unsent questions are eligible</td></tr></tbody></table></div>
+    <p>Each send selects randomly from the eligible pool. Questions are not sent in sheet order. If there are no eligible unsent questions, delivery stops with an error—add questions, release another chapter, or allow repeats.</p>
+    <details><summary>What does “Clear Sent Questions” do?</summary><p>It clears the “sent” markers in column M for the <strong>whole question bank</strong>. This makes those questions available again when repeats are off. It does not erase Poll Responses or User Streaks. Use it only when you intend to restart that delivery history.</p></details>
+  </article>
+
+  <article id="schedule" data-title="Schedule timing frequency automatic trigger fullCode days weekdays timezone Singapore daily hourly twice weekly" class="guide-section">
+    <div class="section-heading"><span class="section-number">10</span><div><p class="eyebrow">SET IT ONCE, ADJUST WHEN NEEDED</p><h2>Choose the days.<br>Then choose the time.</h2></div></div>
+    <p>Two controls work together: <strong>Dashboard chooses which weekdays are allowed</strong>; an <strong>Apps Script time-driven trigger chooses when to run</strong>. Selecting weekdays alone does not create an automatic schedule.</p>
+    <h3>A. Check your time zones</h3>
+    <p>In Google Sheets, use <strong>File → Settings → Time zone</strong>. In Apps Script, open <strong>Project Settings → Time zone</strong>. Set both to <strong>Singapore / GMT+08:00</strong> for this guide. This version checks weekdays and participation streaks using Singapore dates. Changing only a trigger’s time zone does not change that weekday logic; ask a maintainer to review the setup if your school needs another region’s calendar.</p>
+    <h3>B. Select weekdays</h3>
+    <p>In Dashboard, tick the desired days in <strong>B2:B8</strong>. For Monday, Wednesday and Friday delivery, tick those three days only. For a weekly Friday quiz, tick Friday only.</p>
+    <h3>C. Create one daily trigger</h3>
+    <ol class="steps"><li>Open <strong>Extensions → Apps Script</strong>.</li><li>Click the <strong>Triggers</strong> clock icon on the left, then <strong>Add Trigger</strong>.</li><li>Choose function <strong>fullCode</strong> and deployment <strong>Head</strong> if that field is shown.</li><li>Choose event source <strong>Time-driven</strong>, type <strong>Day timer</strong>, and your preferred hour window.</li><li>Save and authorise if prompted. Check that one trigger is listed.</li></ol>
+    <div class="callout warning"><strong>Choose fullCode, not sendPoll.</strong><p><code>fullCode</code> updates chapter release dates, checks today’s weekday, then sends one question. A scheduled <code>sendPoll</code> run bypasses the weekday check. You do not need a separate updateStatusBasedOnDate trigger.</p></div>
+    <p>Google’s time-driven delivery is <strong>approximate</strong>. A selected 8–9 am window does not promise 8:00 am. Your computer and spreadsheet do not need to remain open. Triggers run under the account that created them.</p>
+    <div class="planner" aria-labelledby="planner-title">
+      <div class="planner-heading"><div><p class="eyebrow">TRY YOUR ROUTINE</p><h3 id="planner-title">Plan a weekly schedule</h3></div><span class="badge">Preview only</span></div>
+      <fieldset><legend>Which weekdays?</legend><div class="weekday-pills" id="planner-days">
+        <label><input type="checkbox" value="Monday" checked><span>Mon</span></label><label><input type="checkbox" value="Tuesday"><span>Tue</span></label><label><input type="checkbox" value="Wednesday" checked><span>Wed</span></label><label><input type="checkbox" value="Thursday"><span>Thu</span></label><label><input type="checkbox" value="Friday" checked><span>Fri</span></label><label><input type="checkbox" value="Saturday"><span>Sat</span></label><label><input type="checkbox" value="Sunday"><span>Sun</span></label>
+      </div></fieldset>
+      <div class="planner-controls"><label>Questions per selected day<select id="daily-count"><option value="1">One question</option><option value="2">Two questions</option></select></label><label>First daily trigger window<select id="window-one"><option>7–8 am</option><option selected>8–9 am</option><option>12–1 pm</option><option>3–4 pm</option><option>6–7 pm</option></select></label><label id="second-window-label" hidden>Second daily trigger window<select id="window-two"><option>7–8 am</option><option>8–9 am</option><option>12–1 pm</option><option selected>3–4 pm</option><option>6–7 pm</option></select></label></div>
+      <div class="planner-result" aria-live="polite"><strong id="weekly-total">3</strong><div><b id="weekly-caption">planned quizzes per week</b><p id="schedule-summary"></p></div></div>
+      <p class="microcopy">This planner does not change your workbook or create triggers. Counts assume eligible classes, chapters and questions are available.</p>
+    </div>
+    <h3>Adjusting frequency later</h3>
+    <div class="table-wrap"><table><thead><tr><th>You want…</th><th>Change this</th></tr></thead><tbody><tr><td>Fewer or more days per week</td><td>Change the weekday checkboxes on Dashboard</td></tr><tr><td>A different daily time</td><td>Edit the existing fullCode trigger’s hour window</td></tr><tr><td>Two questions on each selected day</td><td>Create two fullCode Day timer triggers in different hour windows</td></tr><tr><td>A temporary pause for all classes</td><td>Untick every weekday; manual SEND still works</td></tr><tr><td>A pause for just one class</td><td>Untick that class’s Active box in Class Registry</td></tr></tbody></table></div>
+    <p>Do not accidentally keep duplicate triggers for the same delivery. Hourly/minute timers can send repeatedly, including outside school hours: this version has a weekday filter, not a school-hours filter. For a simple school routine, use one or two daily windows.</p>
+    <p class="source-note">Official reference: <a href="https://developers.google.com/apps-script/guides/triggers/installable#time-driven_triggers" target="_blank" rel="noopener">Google’s time-driven trigger behaviour</a>.</p>
+  </article>
+
+  <article id="results" data-title="Results student responses anonymous public identified polls claim streak win daily participation logs privacy" class="guide-section">
+    <div class="section-heading"><span class="section-number">11</span><div><p class="eyebrow">AFTER THE QUIZ</p><h2>See how students are doing.</h2></div></div>
+    <p>Students answer in Telegram. The quiz gives correctness feedback, and the explanation/lightbulb can show your feedback text. In identified polls, the bot also records answers and updates streaks.</p>
+    <div class="table-wrap"><table><caption>Anonymous Poll in Class Registry column E</caption><thead><tr><th>Unticked · identified</th><th>Ticked · anonymous</th></tr></thead><tbody><tr><td>Student identity can be visible to group participants</td><td>Votes are anonymous</td></tr><tr><td>Individual answers logged in Poll Responses</td><td>No individual answer logging by this bot</td></tr><tr><td>Streaks updated; Claim streak button sent</td><td>No individual streak tracking or claim button</td></tr></tbody></table></div>
+    <h3>Three tabs, three purposes</h3>
+    <ul class="simple-list"><li><strong>Poll Map:</strong> technical record connecting a Telegram poll to its question and class group. Leave this for the bot.</li><li><strong>Poll Responses:</strong> answer time, question ID, Telegram user details, selected option, correct/wrong result and streak values.</li><li><strong>User Streaks:</strong> the latest consecutive-correct count and daily participation count for each Telegram user.</li></ul>
+    <p><strong>Correct-answer streak</strong> increases for a correct answer and resets on an incorrect one. <strong>Daily participation streak</strong> counts consecutive calendar days with an answer—not merely opening Telegram. It uses Singapore dates; days with no quiz can break that sequence. Streaks are per user across this bot, not separate for each class.</p>
+    <p>The sheet calls the participation field “daily_login_streak”. The Claim streak popup uses temporary cached results; vote first, wait a moment, then tap it. A much older claim can expire even when the answer remains in the workbook.</p>
+    <div class="callout"><strong>Keep student records within your approved teacher team.</strong><p>Identified mode stores Telegram user IDs, available usernames, names and answers. Agree on the school’s preferred mode and explain it to teachers and students before launch.</p></div>
+  </article>
+
+  <article id="maintenance" data-title="New academic year pause reset handover owner archive Active security token settings" class="guide-section">
+    <div class="section-heading"><span class="section-number">12</span><div><p class="eyebrow">KEEP IT MANAGEABLE</p><h2>Pause, restart, or hand over.</h2></div></div>
+    <h3>For a new school year</h3><ol class="steps"><li>Untick Active for old classes. You may mark their Status as Archived.</li><li>Add each new class on a new registry row with a new class code; tick Active when ready.</li><li>Run <strong>setupClassOnboarding</strong> again and distribute the new links.</li><li>Review chapters, weekday selections and existing triggers before restarting delivery.</li></ol>
+    <p class="plain-note">Academic Year in column A is a label, not an automatic delivery filter. Any row meeting the delivery conditions can receive quizzes, including an old-year row that is still Active.</p>
+    <h3>When a bot is removed from a group</h3><p>The membership update should clear Bot Present and mark the row Needs attention. That group is excluded. Re-add the bot using the class link and confirm the row returns to Connected before expecting delivery.</p>
+    <h3>When a new coordinator takes over</h3><p>Review ownership/access to the workbook, bot and image folder. The new coordinator should authorise their account and review deployment ownership. Installable triggers run as their creator, so replace the outgoing coordinator’s schedule deliberately and avoid leaving two schedules active. Test the handover with one group.</p>
+    <h3>What usually needs no code change</h3><p>Questions, feedback, image files, chapter choices, weekdays, trigger times, class links and Active settings can all be managed through the sheet or the named setup functions. The Organic Adaptive Tester message remains disabled; re-enabling that optional feature is a separate coordinator/code-maintenance task.</p>
+  </article>
+
+  <article id="troubleshooting" data-title="Troubleshooting errors links not generated webhook auth chat not found no questions repeated missing image" class="guide-section">
+    <div class="section-heading"><span class="section-number">13</span><div><p class="eyebrow">WHEN SOMETHING DOESN’T LOOK RIGHT</p><h2>Check the simplest thing first.</h2></div></div>
+    <p>In Apps Script, <strong>Executions</strong> shows recent runs. Open a failed run and read its error. Do not share screenshots containing your token.</p>
+    <details><summary>No onboarding link appeared in H</summary><p>Confirm the class code is in <strong>B</strong>. Select <strong>onboarding.gs → setupClassOnboarding → Run</strong>—not onOpen. Check E1 contains your bot token and the run completed. Existing blank rows are intentionally skipped.</p></details>
+    <details><summary>The link says the class is not active</summary><p>Tick <strong>Active (F)</strong> for that row. Check its Status is not Archived. Open that class’s own link again.</p></details>
+    <details><summary>It says the class link was already used</summary><p>The link is connected to a different group. Do not use it for a second group or borrow another class’s link. Ask the coordinator to review the class’s existing connection.</p></details>
+    <details><summary>The group connected, but no quiz arrived</summary><p>Check Active, Connected, a populated Chat ID and Bot Present in Class Registry. Run <strong>previewClassDeliveryTargets</strong>. Then check eligible chapters, available questions and the send confirmation. If it is only automatic sending that fails, check a fullCode trigger exists and today’s weekday is ticked.</p></details>
+    <details><summary>“No quiz recipients”</summary><p>No registry row currently satisfies all delivery conditions. Do not manually invent a Chat ID. Finish onboarding at least one active class and verify the status and Bot Present fields.</p></details>
+    <details><summary>“No chapters” or “No unsent questions”</summary><p>Check chapter names in Questions J and Completed Chapters A. If completed-only mode is on, tick the relevant chapter. Add unused questions or enable Allow Repeat Questions deliberately. A bank exhausted with repeats off does not send.</p></details>
+    <details><summary>Chat not found / forbidden / bot was kicked</summary><p>Confirm the bot is still in the intended group and can post. Use the onboarding link to restore the connection where possible, then verify registry status. Read the exact failed-delivery message before resending.</p></details>
+    <details><summary>The image is missing or the photo request fails</summary><p>Check your folder ID in E2, ownership/access, a refreshed File List and an exact filename in F. G must contain an image ID. Shorten long captions and use a normal PNG/JPG image.</p></details>
+    <details><summary>The answer index is #N/A or the wrong answer is marked correct</summary><p>Copy the correct option text exactly from B–E into N. Check there are four distinct options and K is 0–3. Restore the K formula if it was overwritten; do not type the letter A/B/C/D into N unless the option text itself is that letter.</p></details>
+    <details><summary>Votes arrive, but responses or streaks do not appear</summary><p>Make sure Anonymous Poll is <strong>unticked</strong>. Check the webhook with <strong>webhook.gs → checkTelegramWebhook → Run</strong>. Its URL must match Dashboard E3 and the correct bot token. Vote in a new identified test poll, wait briefly, then check the logs.</p></details>
+    <details><summary>“Vote first” after I already voted</summary><p>Allow a short moment for Telegram’s answer update to reach the bot, then tap again. Check the webhook if the problem persists. Old claim results can expire from the temporary cache; the workbook is the longer-term record.</p></details>
+    <details><summary>Too many questions / unexpected sending days</summary><p>Inspect Triggers for duplicate or hourly timers. Use <strong>fullCode</strong> for scheduled sends; sendPoll bypasses weekday gating. Remember that manual SEND is immediate and independent of the schedule.</p></details>
+    <details><summary>The menu, drawings or buttons are missing</summary><p>Reload the Google Sheet and wait for it to load. Use the named Apps Script functions in this guide as an alternative. Do not add another script file or paste duplicate functions.</p></details>
+    <details><summary>I made a copy, but setup or deployment is blocked</summary><p>Make sure you are in your own Google Sheet copy, signed into its managing account. Review Google’s authorisation prompt. If Anyone access or required services are restricted by your school, ask the Workspace administrator to review them.</p></details>
+  </article>
+
+  <article id="reference" data-title="Reference functions tabs columns glossary quick help sources" class="guide-section">
+    <div class="section-heading"><span class="section-number">14</span><div><p class="eyebrow">KEEP THIS HANDY</p><h2>Your coordinator’s reference.</h2></div></div>
+    <div class="table-wrap"><table><caption>Choose the job, then select the function</caption><thead><tr><th>Job</th><th>File → function → Run</th></tr></thead><tbody><tr><td>Generate or refresh class links</td><td>onboarding.gs → <code>setupClassOnboarding</code></td></tr><tr><td>Preview recipients without sending</td><td>onboarding.gs → <code>previewClassDeliveryTargets</code></td></tr><tr><td>Register your deployed URL</td><td>onboarding.gs → <code>setupTelegramWebhookForOnboarding</code></td></tr><tr><td>Check the webhook</td><td>webhook.gs → <code>checkTelegramWebhook</code></td></tr><tr><td>Send one quiz manually</td><td>Code.gs → <code>sendPollFromDashboard</code></td></tr><tr><td>Refresh image filenames and IDs</td><td>Code.gs → <code>getFileNamesAndIds</code></td></tr><tr><td>Refresh date-based chapter checkboxes</td><td>Code.gs → <code>updateStatusBasedOnDate</code></td></tr><tr><td>Automatic delivery</td><td>A time-driven trigger for <code>fullCode</code></td></tr></tbody></table></div>
+    <div class="table-wrap"><table><caption>Tabs at a glance</caption><thead><tr><th>Tab</th><th>Purpose</th></tr></thead><tbody><tr><td>Dashboard</td><td>Your private bot settings, weekday choices and manual actions</td></tr><tr><td>Class Registry</td><td>Class details, onboarding links and the only delivery list</td></tr><tr><td>Questions</td><td>Your four-option question bank</td></tr><tr><td>Completed Chapters</td><td>Topics, optional unlock dates and release choices</td></tr><tr><td>File List</td><td>Image-file index generated from your Drive folder</td></tr><tr><td>Poll Map</td><td>Internal poll-to-question/group mapping</td></tr><tr><td>Poll Responses</td><td>Identified answers and results</td></tr><tr><td>User Streaks</td><td>Latest per-user streak records</td></tr></tbody></table></div>
+    <details><summary>Plain-language glossary</summary><dl class="glossary"><dt>Bot token</dt><dd>The secret credential for your Telegram bot. Store it in Dashboard E1.</dd><dt>Chat ID</dt><dd>Telegram’s group identifier. Onboarding fills it automatically in Class Registry J.</dd><dt>Webhook</dt><dd>Your deployed address for receiving Telegram updates. Store it in Dashboard E3.</dd><dt>Trigger</dt><dd>A Google timer that runs a selected function automatically.</dd><dt>Function</dt><dd>A named action already in the script. Select its name from the dropdown, then Run.</dd><dt>Deployment</dt><dd>A published version of your script that Telegram can reach.</dd></dl></details>
+    <div class="final-cta"><p class="eyebrow">READY WHEN YOU ARE</p><h3>Your subject. Your questions.<br>A regular moment of practice.</h3><a class="button" data-template-copy href="https://docs.google.com/spreadsheets/d/1cRlpZaSJnoakQxmchgc4X3xbleVbjW1Czp6vHQKYr7c/copy" target="_blank" rel="noopener">Make your own copy <span aria-hidden="true">↗</span></a></div>
+  </article>
+  <footer class="footer"><p>Telegram MCQ · Coordinator guide</p><p>Prepared for the Class Registry template · Updated 28 October 2026</p><p>Independent classroom guide. Not affiliated with Telegram or Google. No tokens or student data are collected by this guide.</p><a href="#overview">Back to top ↑</a></footer>
+</main>
+</div>
+</body>
+</html>
